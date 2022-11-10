@@ -10,7 +10,6 @@ function App() {
       <Header />
       <main>
          <Card />
-         <Card />
       </main>
       <footer>
         <NavBar />

@@ -1,12 +1,18 @@
 import React from 'react';
-import "./Card.css";
+import styled from "styled.components";
 
 export default function Card() {
     return (
-        <section className="Card">
+        <StyledCard>
         <h2>Morty Smith</h2>
         <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="Morty Smith" />
         <button type="button">Learn more about Morty Smith</button>
-        </section>
+        </StyledCard>
         );
   }
+
+  const StyledCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`

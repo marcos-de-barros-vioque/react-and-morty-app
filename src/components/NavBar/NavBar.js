@@ -1,9 +1,9 @@
 import React from 'react';
-import "./NavBar.css";
+import styled from "styled.components";
 
 export default function NavBar() {
     return (
-    <nav className="Navbar">
+    <StyledNavBar>
         <ul>
           <li>
               <a href="#home">Home
@@ -22,5 +22,21 @@ export default function NavBar() {
               </a>
           </li>
         </ul>
-    </nav>);
+    </StyledNavBar>
+    );
   }
+
+  const StyledNavBar = styled.nav`
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+    padding-top: 30px;
+    padding-bottom: 10px;
+
+    ul li {
+    list-style-type: none;
+    display: inline;
+    margin-left: 50px;
+    margin-right: 50px;
+    }
+    `
