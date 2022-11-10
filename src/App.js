@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import Header from "./components/Header/Header";
 import NavBar from "./components/NavBar/NavBar";
@@ -6,7 +5,7 @@ import Card from "./components/Card/Card";
 
 function App() {
   return (
-    <body className="App">
+    <body>
       <Header />
       <main>
          <Card />
