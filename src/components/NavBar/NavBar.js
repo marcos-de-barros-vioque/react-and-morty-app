@@ -1,10 +1,9 @@
 import React from 'react';
-import styled from "styled.components";
+import styled from "styled-components";
 
 export default function NavBar() {
     return (
     <StyledNavBar>
-        <ul>
           <li>
               <a href="#home">Home
               </a>
@@ -21,21 +20,20 @@ export default function NavBar() {
               <a href="#other">Other
               </a>
           </li>
-        </ul>
     </StyledNavBar>
     );
   }
 
-  const StyledNavBar = styled.nav`
+  const StyledNavBar = styled.ul`
     display: flex;
-    justify-content: space-between;
-    margin: 1rem;
+    justify-content: center;
     padding-top: 30px;
     padding-bottom: 10px;
 
-    ul li {
+    li {
     list-style-type: none;
     display: inline;
+    align-items: center;
     margin-left: 50px;
     margin-right: 50px;
     }
