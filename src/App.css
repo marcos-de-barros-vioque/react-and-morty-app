@@ -15,17 +15,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
 }
@@ -37,25 +26,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.App-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Navbar {
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem;
-  padding-top: 30px;
-  padding-bottom: 10px;
-}
-
-.Navbar ul li {
-  list-style-type: none;
-  display: inline;
-  margin-left: 50px;
-  margin-right: 50px;
 }
