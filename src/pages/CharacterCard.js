@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
 
-export default function CharacterCard({apiCharacters, handleToggleMore, }) {
-  const [moreDetails, setMoreDetails] = useState(false);
+export default function CharacterCard({ favorite, handleFavorite, apiCharacters }) {
+
   let { characterId } = useParams()
+
   const character = apiCharacters.find(({ id }) => id === Number(characterId));
+  
+  const [moreDetails, setMoreDetails] = useState(false);
+  const handleMoreDetails = () => {
+    setMoreDetails(!moreDetails);
+  }
 
   return (
         <CharacterContainer>
+          <FavoriteButton favorite={favorite} onClick={handleFavorite}>Add to favorites</FavoriteButton>
           <img src={character.image} alt={character.name} />
           <h2>{character.name}</h2>
-          <button onClick={handleToggleMore}>Show more details</button>
+          <button onClick={handleMoreDetails}>Show more details</button>
           <CharacterDetails moreDetails={moreDetails}>
             <ul>
               <li>species: {character.species}</li>
@@ -36,6 +43,10 @@ const CharacterDetails = styled.div`
   ul {
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 0px;
   }
 `
+
+const FavoriteButton = styled.button`
+  ${(props) => props.isFavorite && "background-color: blue"};
+`;
