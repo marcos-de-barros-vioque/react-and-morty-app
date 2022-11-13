@@ -7,12 +7,14 @@ import Header from './components/Header';
 import NavBar from './components/NavBar';
 import CharacterCard from './pages/CharacterCard';
 import Home from './pages/Home';
+import Favorites from './pages/Favorites';
 //import CharacterRandom from './pages/CharacterRandom';
-//import Favorites from './pages/Favorites';
 
 
 export default function App() {
+
   const [apiCharacters, setApiCharacters] = useState([]);
+  
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("https://rickandmortyapi.com/api/character");
@@ -22,15 +24,27 @@ export default function App() {
     fetchData();
 }, []);
 
+  const [favorite, setFavorite] = useState(() => JSON.parse(localStorage.getItem("favorites") || "[]"));
+
+  function handleFavorite(id) {
+    if (favorite.includes(id)) {
+      const addFavorite = favorite.filter((favID) => favID !== id);
+      setFavorite(addFavorite);
+    } else {
+      setFavorite([...favorite, id]);
+    }
+  }
+
+  useEffect(() => {localStorage.setItem("favorites", JSON.stringify(favorite))}, [favorite]);
+
   return (
     <AppContainer>
       <Header />
       <NavBar />
       <Routes>
         <Route path="/" element={<Home apiCharacters={apiCharacters} />} />
-        <Route path="/favorites" />
+        <Route path="/favorites" element={<Favorites handleFavorite={handleFavorite} favorite={favorite} />} />
         <Route path="/random" />
-        <Route path="/other" />
         <Route path={"/character/:characterId"} element={<CharacterCard apiCharacters={apiCharacters} />} />
       </Routes>
     </AppContainer>

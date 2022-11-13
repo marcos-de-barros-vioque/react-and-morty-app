@@ -28,6 +28,7 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 50px;
   }
 
   img {
