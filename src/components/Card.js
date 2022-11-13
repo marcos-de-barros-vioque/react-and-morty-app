@@ -1,22 +1,41 @@
-//import React from 'react';
-//import styled from "styled-components";
-//import { Link } from 'react-router-dom';
+import React from 'react';
+import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
-//export default function Card({ apiCharacter }) {
-  //return (
-  //<StyledCharacterCard>
-          //<img src={apiCharacter.image} alt="Portrait of Character" />
-          //<h2>{apiCharacter.name}</h2>
-          //<Link to={`/character/${apiCharacter.id}`}>
-          //<button>Learn more about {apiCharacter.name}</button>
-          //</Link>
-  //</StyledCharacterCard>
-  //);
-//};
+export default function Card({ apiCharacters }) {
+  return (
+  <CardContainer>
+      {apiCharacters.map((apiCharacter) => {
+        return (
+          <section key={apiCharacter.id}>
+             <img src={apiCharacter.image} alt={apiCharacter.name} />
+             <h2>{apiCharacter.name}</h2>
+             <Link to={{ pathname: "/character/" + apiCharacter.id, }}><button> More details about {apiCharacter.name}</button></Link>
+          </section>
+        );
+      })}
+  </CardContainer>
+  );
+}
 
-//const StyledCharacterCard = styled.li`
-  //display: flex;
-  //flex-direction: column;
-  //align-items: center;
-  //margin-top: 150px;
-  //`
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+
+  section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+
+  img {
+    border-radius: 20%;
+  }
+
+  button {
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+  `

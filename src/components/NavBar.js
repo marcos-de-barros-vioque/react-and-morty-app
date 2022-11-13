@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function NavBar() {
     return (
-    <StyledNavBar>
+    <NavBarContainer>
         <nav>
         <ul>
           <li>
@@ -21,11 +21,11 @@ export default function NavBar() {
           </li>
         </ul>
         </nav>
-    </StyledNavBar>
+    </NavBarContainer>
     );
   }
 
-  const StyledNavBar = styled.footer`
+  const NavBarContainer = styled.footer`
   position: fixed;
   bottom: 0;
   right: 0;
