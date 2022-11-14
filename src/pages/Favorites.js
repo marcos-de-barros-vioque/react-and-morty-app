@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from "react";
 
-export default function Favorites({ favorite }) {
+export default function Favorites({ favorite, handleToggleFavorite }) {
     
     const [favoriteCharacters, setFavoriteCharacters] = useState([]);
 
@@ -23,6 +23,10 @@ export default function Favorites({ favorite }) {
                     <section key={favoriteCharacter.id}>
                          <img src={favoriteCharacter.image} alt={favoriteCharacter.name} />
                          <h2>{favoriteCharacter.name}</h2>
+                         <FavoriteButton
+                         onClick={() => handleToggleFavorite(favoriteCharacter.id.toString())}
+                         isFavorite={true}
+                         >No more favorite</FavoriteButton>
                     </section>
                 )
             })}
@@ -50,4 +54,8 @@ const CharacterContainer = styled.div`
     border-radius: 5px;
     margin-bottom: 1rem;
   }
+`
+
+const FavoriteButton = styled.button`
+${(props) => props.isFavorite && "background-color: blue"}
 `

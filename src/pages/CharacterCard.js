@@ -1,29 +1,42 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router'; //react-router hook
 import styled from 'styled-components';
 
-export default function CharacterCard({ favorite, handleFavorite, apiCharacters }) {
+export default function CharacterCard({ favorite, handleToggleFavorite = () => {} }) {
 
   let { characterId } = useParams()
-
-  const character = apiCharacters.find(({ id }) => id === Number(characterId));
   
   const [moreDetails, setMoreDetails] = useState(false);
   const handleMoreDetails = () => {
     setMoreDetails(!moreDetails);
   }
 
+  const [character, setCharacter] = useState({})
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        "https://rickandmortyapi.com/api/character/" + characterId
+      )
+      const data = await response.json()
+      setCharacter(data)
+      console.log(data)
+    }
+    fetchData()
+  }, [])
+
   return (
         <CharacterContainer>
-          <FavoriteButton favorite={favorite} onClick={handleFavorite}>Add to favorites</FavoriteButton>
+          <FavoriteButton isFavorite={favorite} onClick={() => 
+            handleToggleFavorite(characterId)}>Add to favorites</FavoriteButton>
           <img src={character.image} alt={character.name} />
           <h2>{character.name}</h2>
           <button onClick={handleMoreDetails}>Show more details</button>
           <CharacterDetails moreDetails={moreDetails}>
             <ul>
-              <li>species: {character.species}</li>
-              <li>gender: {character.gender}</li>
-              <li>status: {character.status}</li>
+              <li>Species: {character.species}</li>
+              <li>Gender: {character.gender}</li>
+              <li>Status: {character.status}</li>
             </ul>
            </CharacterDetails>
         </CharacterContainer>

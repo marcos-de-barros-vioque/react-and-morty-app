@@ -26,7 +26,7 @@ export default function App() {
 
   const [favorite, setFavorite] = useState(() => JSON.parse(localStorage.getItem("favorites") || "[]"));
 
-  function handleFavorite(id) {
+  function handleToggleFavorite(id) {
     if (favorite.includes(id)) {
       const addFavorite = favorite.filter((favID) => favID !== id);
       setFavorite(addFavorite);
@@ -43,7 +43,7 @@ export default function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home apiCharacters={apiCharacters} />} />
-        <Route path="/favorites" element={<Favorites handleFavorite={handleFavorite} favorite={favorite} />} />
+        <Route path="/favorites" element={<Favorites handleToggleFavorite={handleToggleFavorite} favorite={favorite} />} />
         <Route path="/random" />
         <Route path={"/character/:characterId"} element={<CharacterCard apiCharacters={apiCharacters} />} />
       </Routes>
