@@ -32,7 +32,7 @@ const CardContainer = styled.div`
   }
 
   img {
-    border-radius: 20%;
+    border-radius: 10%;
   }
 
   button {
